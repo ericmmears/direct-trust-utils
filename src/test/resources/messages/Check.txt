@@ -1,0 +1,21 @@
+to: sandeep@hit-testing.nist.gov
+MIME-Version: 1.0
+content-type: multipart/report; report-type=disposition-notification; boundary="----=_Part_12_11925628.1458137218415"
+Date: Wed, 16 Mar 2016 14:06:58 +0000 (UTC)
+message-id: <18271854.14.1458137218416.JavaMail.root@ip-10-244-175-183>
+subject: Dispatched: Testing sending mail with Disposition Notification Header!
+From: gm2552@direct.securehealthemail.com
+
+------=_Part_12_11925628.1458137218415
+
+Your message was successfully dispatched.
+------=_Part_12_11925628.1458137218415
+content-type: message/disposition-notification
+
+Reporting-UA: direct.securehealthemail.com; Local Direct Delivery Agent
+Final-Recipient: rfc822; gm2552@direct.securehealthemail.com
+Original-Message-ID: <1576409150.43.1458135642328.JavaMail.root@edge.nist.gov>
+X-DIRECT-FINAL-DESTINATION-DELIVERY: 
+Disposition: automatic-action/MDN-sent-automatically;dispatched
+
+------=_Part_12_11925628.1458137218415--

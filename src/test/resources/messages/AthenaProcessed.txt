@@ -1,0 +1,39 @@
+X-Account-Key: account10
+X-UIDL: Mail1502195771375-3011
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+X-Mozilla-Keys:                                                                                 
+Return-Path: <doctor.tester.1@1959.direct.athenahealth.com>
+Received: from localhost.localdomain (localhost [127.0.0.1])
+	by interface117.athenahealth.com (Postfix) with ESMTP id 3DF8280FC0
+	for <atabInterop@direct.securehealthemail.com>; Tue,  8 Aug 2017 08:36:27 -0400 (EDT)
+Date: Tue, 8 Aug 2017 08:35:09 -0400
+From: doctor.tester.1@1959.direct.athenahealth.com
+To: atabInterop@direct.securehealthemail.com
+Message-ID: <421089M1959T20170823o4u2.reply@1959.direct.athenahealth.com>
+MIME-Version: 1.0
+Content-Type: multipart/report; boundary="1502195709.E2ac6Eb258.18862"; report-type="disposition-notification"
+Delivered-To: atabInterop@direct.securehealthemail.com
+
+
+--1502195709.E2ac6Eb258.18862
+Date: Tue, 8 Aug 2017 08:35:09 -0400
+MIME-Version: 1.0
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+
+Your message was delivered successfully.
+
+Please do not reply to this message.
+
+--1502195709.E2ac6Eb258.18862
+Date: Tue, 8 Aug 2017 08:35:09 -0400
+MIME-Version: 1.0
+Content-Type: message/disposition-notification
+Content-Transfer-Encoding: 7bit
+
+Final-Recipient: rfc822;doctor.tester.1@1959.direct.athenahealth.com
+Original-Message-ID: <1087135417.35.1502195576436.JavaMail.root@ip-172-31-10-81>
+Disposition: automatic-action/MDN-sent-automatically; processed
+X-DIRECT-FINAL-DESTINATION-DELIVERY:
+--1502195709.E2ac6Eb258.18862--

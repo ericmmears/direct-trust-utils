@@ -1,0 +1,108 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:ws="http://jax-ws.dev.java.net/spring/core"
+       xmlns:wss="http://jax-ws.dev.java.net/spring/servlet"       
+       xsi:schemaLocation="
+       http://jax-ws.dev.java.net/spring/core http://jax-ws.dev.java.net/spring/core.xsd
+       http://jax-ws.dev.java.net/spring/servlet http://jax-ws.dev.java.net/spring/servlet.xsd       
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context-2.5.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd    
+       http://camel.apache.org/schema/spring          http://camel.apache.org/schema/spring/camel-spring.xsd"
+       default-autowire="byName">
+       
+   	<context:annotation-config />
+    <context:component-scan base-package="org.dtrust.dao"/>
+    <context:component-scan base-package="org.dtrust.resources"/>    
+    <context:component-scan base-package="org.dtrust.providers"/>        
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+    <context:property-placeholder location="classpath:properties/dt-interop-test.properties"/>	
+
+    <bean id="springApplicationContext" class="org.dtrust.TestApplicationContext"/>
+
+	<!-- Exception translation bean post processor -->
+	<bean
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" >
+				<property name="showSql" value="${entityManager.showSQL}" />
+				<property name="generateDdl" value="true" />
+				<property name="databasePlatform" value="${entityManager.databasePlatform}" />
+			</bean>
+		</property>
+		<property name="dataSource" ref="dataSource"/>
+		<property name="persistenceUnitName" value="dt-interop" />	
+	</bean>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${datasource.driverClassName}" />
+		<property name="url" value="${datasource.URL}" />
+		<property name="username" value="${datasource.username}" />
+		<property name="password" value="${datasource.password}" />
+	</bean> 
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" />   
+
+   
+	
+	
+
+    <!-- Resource property beans --> 
+    
+    
+    <bean id="crlFile" class="java.lang.String" >
+		<constructor-arg value="${interopTestResource.crlFile}" />
+	</bean>
+    
+    
+	<bean id="baseReturnURI" class="java.lang.String" >
+		<constructor-arg value="${userReg.returnURI}" />
+	</bean>
+        
+    
+	<bean id="localDomain" class="java.lang.String" >
+		<constructor-arg value="${interopTestResource.localDomain}" />
+	</bean>
+	
+    <bean id="localSender" class="javax.mail.internet.InternetAddress" >
+		<constructor-arg value="${interopTestResource.localSender}" />
+	</bean>
+    
+    <bean id="msgSender" class="org.dtrust.util.SMTPMessageSender" >
+		<constructor-arg index="0" value="${interopTestResource.msgSender.port}" />
+		<constructor-arg index="1" value="${interopTestResource.msgSender.server}" />
+		<constructor-arg index="2" value="${interopTestResource.msgSender.username}" />		
+		<constructor-arg index="3" value="${interopTestResource.msgSender.password}" />				
+	</bean>
+    
+    <bean id="userRegNotifRecip" class="javax.mail.internet.InternetAddress" >
+		<constructor-arg value="${userReg.newUserNotificationAddress}" />			
+	</bean>
+    
+    <bean id="privCertResolver" class="org.dtrust.resources.utils.PrivateCertResolver">
+    	<property name="goodCertificateFile" value="certs/good.p12" />
+    	<property name="expiredCertificateFile" value="certs/expired.p12" />
+    	<property name="revokedCertificateFile" value="certs/revoked.p12" />    	
+    	<property name="nonTrustedCertificateFile" value="certs/nonTrusted.p12" />        	
+    </bean>
+    
+    <bean id="monitorFactory" class="org.dtrust.resources.utils.DAOAndPop3InteropTestMonitorFactory" />
+    
+    <bean id="msgRetriever" class="org.dtrust.util.POP3MessageRetrieverFactory" >
+		<constructor-arg index="0" value="${interopTestResource.msgRetriever.port}" />
+		<constructor-arg index="1" value="${interopTestResource.msgRetriever.server}" />
+		<constructor-arg index="2" value="${interopTestResource.msgRetriever.username}" />		
+		<constructor-arg index="3" value="${interopTestResource.msgRetriever.password}" />				
+	</bean>
+    
+</beans>

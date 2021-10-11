@@ -1,0 +1,15 @@
+<html>
+
+<body>
+<h3 class="p1">Hello {Name},</h3>
+
+<h3 class="p1">Your request to access the DirectTrust Bundle Interoperability app with username {username} has been approved<h3>
+
+<h3 class="p1">Please click this&nbsp;<a href="{baseURI}">link</a> or copy link&nbsp;below to log in.</h3>
+
+<h5 class="p1">{baseURI}</h5>
+
+<p>&nbsp;</p>
+
+<body>
+</html>
