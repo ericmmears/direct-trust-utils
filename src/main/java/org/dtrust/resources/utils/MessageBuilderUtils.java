@@ -133,8 +133,7 @@ public class MessageBuilderUtils
 		
 		final MimeMessage retVal = new MimeMessage((Session)null);
 		retVal.setFrom(localSender);
-		for (InternetAddress recip : to)
-			retVal.addRecipient(RecipientType.TO, recip);
+		retVal.addRecipients(RecipientType.TO, to.toArray(new InternetAddress[to.size()]));
 		
 		retVal.setSentDate(now.getTime());
 		retVal.setSubject(subject);
