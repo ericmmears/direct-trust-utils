@@ -127,15 +127,13 @@ public abstract class AbstractValidation extends AbstractNotificationAwareMailet
 		
 		reportMsg.setSubject(getReportSubject() + " " + sendAddr.toString());
 		reportMsg.setFrom(reportSender);
-		
-		for (InternetAddress toAddr : reportRecips)
-			reportMsg.addRecipient(RecipientType.TO, toAddr);
-		
+
+		reportMsg.addRecipients(RecipientType.TO, reportRecips.toArray(new InternetAddress[reportRecips.size()]));
+
 		final Collection<InternetAddress> additionalAddresses = this.getAdditionalReportAddrs(sendAddr.getAddress());
-		if (additionalAddresses != null)
-			for (InternetAddress addr : additionalAddresses)
-				reportMsg.addRecipient(RecipientType.TO, addr);
-		
+		if (additionalAddresses != null) {
+			reportMsg.addRecipients(RecipientType.TO, additionalAddresses.toArray(new InternetAddress[additionalAddresses.size()]));
+		}
 		reportMsg.setText(report.toString());
 		
 		reportMsg.saveChanges();
@@ -144,7 +142,7 @@ public abstract class AbstractValidation extends AbstractNotificationAwareMailet
 		getMailetContext().sendMail(reportMsg);
 		
 		LOGGER.info("Sending validation report to " + reportMsg.getHeader("To", ",") + " from " + reportSender.getAddress());
-		
+
 		//mail.setState(Mail.GHOST);
 	}
 	
